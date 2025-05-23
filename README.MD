@@ -11,7 +11,6 @@ Styled with Bootstrap and NES.css for a retro chat look and feel.
 * 🚀 Backend server with Express
 * 📊 Logging with Morgan
 * 🎨 Retro-style UI using NES.css + Bootstrap
-* 🧠 Modular and clean project structure
 
 ---
 
