@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tomilomi's chat</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+    <!-- NES.css -->
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <link href="/style-chat" rel="stylesheet" />
+
+    <style>
+    </style>
+</head>
+
+<body>
+    <h2 class="title">Tomilomi's Chat</h2>
+    <section id="chat">
+        <div class="message-list" id="messages">
+        </div>
+
+    </section>
+
+    <form id="form" class="chat-input-bar">
+        <textarea id="input" name="message" class="nes-input is-dark" placeholder="Type a message" autocomplete="off"
+            rows="2"></textarea>
+        <button type="submit" class="nes-btn is-primary">ENVIAR</button>
+    </form>
+
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js"
+        const socket = io()
+
+        const form = document.getElementById("form")
+        const input = document.getElementById("input")
+        const messages = document.getElementById("messages")
+
+
+
+        socket.on("chat message", async (msg) => {
+            const sectionMsg = document.createElement("section")
+            sectionMsg.classList.add("message", "-left", "animate-in")
+
+            // const avatar = document.createElement("i")
+            // avatar.classList.add("nes-bcrikko")
+            const avatar = document.createElement("img")
+            avatar.src = "https://ui-avatars.com/api/?name=Tom+Aparicio&background=random&color=fff&size=64"
+
+
+            const balloon = document.createElement("div")
+            balloon.classList.add("nes-balloon", "from-left", "is-dark")
+
+            const msgContent = document.createElement("p")
+            msgContent.textContent = msg
+
+            balloon.appendChild(msgContent)
+            sectionMsg.appendChild(avatar)
+            sectionMsg.appendChild(balloon)
+
+            messages.appendChild(sectionMsg)
+            messages.scrollTop = messages.scrollHeight
+        })
+
+
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            if (input.value) {
+                socket.emit("chat message", input.value)
+                input.value = ""
+            }
+        })
+
+        input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault()
+                if (input.value.trim()) {
+                    socket.emit("chat message", input.value)
+                    input.value = ""
+                }
+            }
+        })
+
+
+        messages.scrollTo({
+            top: messages.scrollHeight,
+            behavior: 'smooth' // Opcional: hace que el scroll baje suave
+        })
+
+    </script>
+</body>
+
+</html>

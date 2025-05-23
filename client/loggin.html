@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login Chat Retro</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- NES.css -->
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+
+    <!-- Fuente retro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #1d1f26;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        section {
+            color: #5083b1;
+            background-color: #293746;
+        }
+
+        /* Hacer que placeholder sea visible en inputs con nes-input is-dark */
+        input.nes-input.is-dark::placeholder {
+            color: #02020288 !important;
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+
+    <section class="nes-container is-rounded is-dark with-title col-10 col-sm-8 col-md-6 col-lg-4">
+        <h2 class="title">Iniciar Sesión</h2>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" id="username" class="nes-input is-dark form-control" placeholder="username" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" class="nes-input is-dark form-control" placeholder="••••••••"
+                required />
+        </div>
+
+        <button class="nes-btn w-100 mt-3">Ingresar</button>
+
+        <div class="welcome mt-3">
+            <p id="frase-epica" class="nes-balloon from-left text-center text-black">
+                ¡Bienvenido al chat retro!
+            </p>
+        </div>
+    </section>
+
+    <script>
+        const frasesEpicas = [
+            "¿Otra vez tú? Pensé que ya te habías rendido.",
+            "Vas a caer... pero bueno, al menos lo intentas.",
+            "¿Creías que sería fácil?\nQué adorable.",
+            "Si sigues así, llegarás muy lejos… directo al suelo.",
+            "Ni los muertos tienen tanta perseverancia como tú.",
+            "Sigue caminando, campeón.\nA lo mejor tropiezas con la derrota.",
+            "El fracaso es tu verdadero talento, no lo ignores.",
+            "Si el destino fuera justo, ya estarías dormido para siempre."
+        ];
+
+        window.onload = () => {
+            const index = Math.floor(Math.random() * frasesEpicas.length);
+            document.getElementById("frase-epica").innerText = frasesEpicas[index];
+        };
+    </script>
+
+</body>
+
+</html>

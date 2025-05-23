@@ -1,0 +1,104 @@
+:root {
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+
+h2 {
+    font-size: 0.8rem;
+}
+
+
+body {
+    margin: 0;
+    padding-bottom: 120px;
+    background-color: #212529;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
+
+#chat {
+    padding: 1rem;
+}
+
+#messages {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#messages li {
+    margin-bottom: 1rem;
+}
+
+.chat-input-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: #212529;
+    border-top: 2px solid white;
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.chat-input-bar input {
+    flex: 1;
+}
+
+.message {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    /* separa un poco el avatar del globo */
+    margin-bottom: 2rem;
+}
+
+
+#message-list {
+    transition: all 0.5s ease;
+}
+
+#input {
+    resize: none;
+}
+
+
+
+
+@media only screen and (max-width: 1300px) {}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.animate-in {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+#messages {
+    max-height: 70vh;
+    /* O el alto que desees */
+    overflow-y: auto;
+}
+
+
+.message p {
+    font-size: 1rem;
+    /* o lo que prefieras */
+}
